@@ -1,0 +1,20 @@
+.week-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+}
+
+.week-grid__header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.week-grid__body {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  height: 150px;
+}
+
+.week-grid__date {
+  text-align: end;
+}
