@@ -1,0 +1,26 @@
+<div class="week-grid">
+  <div>
+    <div class="week-grid__header">
+      <% Date.current.all_week.each do |day| %>
+        <span class="week-grid__date">
+          <small>
+            <%= day.strftime("%a") %>
+          </small>
+          <strong>
+            <%= day.strftime("%d") %>
+          </strong>
+        </span>
+      <% end %>
+    </div>
+    <div class="week-grid__body">
+      <% Date.current.all_week.each do |day| %>
+        <div class="week-grid__day">
+          <% (24.hours/0.5.hour).to_i.times do %>
+            <div class="week-grid__time-slot">
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

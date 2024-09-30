@@ -1,0 +1,32 @@
+:root {
+  --color-slate-300: rgb(226 232 240);
+}
+
+.week-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto;
+}
+
+.week-grid__header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.week-grid__body {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.week-grid__date {
+  text-align: end;
+}
+
+.week-grid__day {
+  border-right: 1px dotted var(--color-slate-300);
+}
+
+.week-grid__time-slot {
+  height: 25px;
+  border-bottom: 1px dotted var(--color-slate-300);
+}
