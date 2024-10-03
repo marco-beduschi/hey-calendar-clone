@@ -1,6 +1,7 @@
 <div class="week-grid">
   <div>
     <div class="week-grid__header">
+      <span class="week-grid__date"></span>
       <% Date.current.all_week.each do |day| %>
         <span class="week-grid__date">
           <small>
@@ -13,10 +14,20 @@
       <% end %>
     </div>
     <div class="week-grid__body">
+      <div class="week-grid__day">
+        <% (24.hours/0.5.hour).to_i.times do |half_hours| %>
+          <div class="week-grid__slot week-grid__clock-slot">
+            <span class="week-grid__clock text-xs">
+              <%= ( Time.current.beginning_of_day + (30.minutes * half_hours) ).strftime("%I %p") if ( half_hours % 2 == 0 && half_hours != 0 ) %>
+            </span>
+            <div class="week-grid__clock-gutter"></div>
+          </div>
+        <% end %>
+      </div>
       <% Date.current.all_week.each do |day| %>
         <div class="week-grid__day">
           <% (24.hours/0.5.hour).to_i.times do %>
-            <div class="week-grid__time-slot">
+            <div class="week-grid__slot week-grid__time-slot">
             </div>
           <% end %>
         </div>

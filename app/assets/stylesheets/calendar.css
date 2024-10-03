@@ -10,12 +10,12 @@
 
 .week-grid__header {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: 50px repeat(7, 1fr);
 }
 
 .week-grid__body {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: 50px repeat(7, 1fr);
 }
 
 .week-grid__date {
@@ -27,6 +27,28 @@
 }
 
 .week-grid__time-slot {
+  border-bottom: 1px dotted var(--color-slate-300);
+}
+
+.week-grid__slot {
   height: 25px;
+}
+
+.week-grid__clock-slot {
+  position: relative;
+  text-align: end;
+}
+
+.week-grid__clock {
+  position: absolute;
+  transform: translateY(-50%);
+  right: 10px;
+}
+
+.week-grid__clock-gutter {
+  position: absolute;
+  right: 0;
+  height: 100%;
+  width: 5px;
   border-bottom: 1px dotted var(--color-slate-300);
 }
