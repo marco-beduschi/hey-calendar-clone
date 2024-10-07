@@ -28,6 +28,12 @@
         <div class="week-grid__day">
           <% (24.hours/0.5.hour).to_i.times do %>
             <div class="week-grid__slot week-grid__time-slot">
+              <%= form_with model: CalendarEvent.new do |f| %>
+                <%= f.hidden_field :calendar_id, value: calendar.id %>
+                <%= f.button(type: :submit) do %>
+                  <span class="sr-only">Create event</span>
+                <% end %>
+              <% end %>
             </div>
           <% end %>
         </div>
