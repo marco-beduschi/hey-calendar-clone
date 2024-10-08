@@ -1,5 +1,6 @@
 :root {
   --color-slate-300: rgb(226 232 240);
+  --color-violet-300: rgb(196 181 253);
   --color-violet-500: rgb(139 92 246);
 }
 
@@ -51,10 +52,11 @@
   & button {
     border: 0;
     background-color: transparent;
+    transition: background-color 100ms;
 
     &:hover {
       border-radius: 4px;
-      outline: 3px solid var(--color-violet-500);
+      background-color: var(--color-violet-300);
     }
   }
 }
