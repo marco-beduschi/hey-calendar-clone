@@ -25,11 +25,9 @@ class CalendarEventsController < ApplicationController
 
     respond_to do |format|
       if @calendar_event.save
-        format.html { redirect_to @calendar_event, notice: "Calendar event was successfully created." }
-        format.json { render :show, status: :created, location: @calendar_event }
+        format.html { redirect_to @calendar_event }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @calendar_event.errors, status: :unprocessable_entity }
       end
     end
   end
