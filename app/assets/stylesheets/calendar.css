@@ -45,6 +45,7 @@
 
 .week-grid__time-slot {
   border-bottom: 1px dotted var(--color-slate-300);
+  grid-area: var(--grid-row-start) / 1 / var(--grid-row-end) / 1;
 
   & button,
   form {
@@ -64,7 +65,11 @@
   }
 }
 
-.week-grid__slot {}
+.week-grid__event {
+  opacity: 0.75;
+  background-color: var(--color-violet-300);
+  border-radius: 4px;
+}
 
 .week-grid__clock-slot {
   position: relative;

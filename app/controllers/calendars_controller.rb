@@ -3,6 +3,7 @@ class CalendarsController < ApplicationController
 
   # GET /calendars/1 or /calendars/1.json
   def show
+    @calendar_events = @calendar.calendar_events.week_of(Time.current)
   end
 
   private
