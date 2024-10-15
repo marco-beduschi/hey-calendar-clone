@@ -29,7 +29,7 @@
           <% @calendar_events.select { _1.starts_at.to_date == day }.each do |event| %>
             <div
               class="week-grid__time-slot week-grid__event"
-              style="--grid-row-start: <%= ( ( ( event.starts_at - event.starts_at.beginning_of_day ) / 60 / 60 ) / 0.5 + 1 ).to_i %>; --grid-row-end: <%= ( ( ( event.ends_at - event.ends_at.beginning_of_day ) / 60 / 60 ) / 0.5 + 1 ).to_i %>;"
+              style="--grid-row-start: <%= ( event.starts_at_ellapsed_minutes / 0.5 + 1 ).to_i %>; --grid-row-end: <%= ( event.ends_at_ellapsed_minutes / 0.5 + 1 ).to_i %>;"
             >
               <p><%= event.title %></p>
             </div>
