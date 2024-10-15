@@ -27,20 +27,14 @@
       <% Date.current.all_week.each do |day| %>
         <turbo-frame class="week-grid__day" id="<%= day.iso8601 %>">
           <% @calendar_events.select { _1.starts_at.to_date == day }.each do |event| %>
-            <div
-              class="week-grid__time-slot week-grid__event"
-              style="--grid-row-start: <%= ( event.starts_at_ellapsed_minutes / 0.5 + 1 ).to_i %>; --grid-row-end: <%= ( event.ends_at_ellapsed_minutes / 0.5 + 1 ).to_i %>;"
-            >
-              <p><%= event.title %></p>
-            </div>
+            <%= render partial: "calendar_events/calendar_event", locals: { calendar_event: event } %>
           <% end %>
           <% (24.hours/0.5.hour).to_i.times do |half_hours| %>
             <div class="week-grid__time-slot" style="--grid-row-start: <%= half_hours + 1 %>; --grid-row-end: <%= (half_hours + 1) + 1 %>;">
               <%= form_with model: CalendarEvent.new do |f| %>
                 <%= f.hidden_field :calendar_id, value: calendar.id %>
-                <%= f.hidden_field :title, value: 'New event' %>
                 <%= f.hidden_field :starts_at, value: day.to_time(:utc).beginning_of_day + (30.minutes * half_hours) %>
-                <%= f.hidden_field :ends_at, value: (day.to_time(:utc).beginning_of_day + (30.minutes * half_hours) + 30.minutes) %>
+                <%= f.hidden_field :ends_at, value: (day.to_time(:utc).beginning_of_day + (30.minutes * half_hours) + 29.minutes + 59.seconds) %>
                 <%= f.button(type: :submit) do %>
                   <span class="sr-only">Create event</span>
                 <% end %>
