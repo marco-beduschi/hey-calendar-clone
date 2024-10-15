@@ -25,28 +25,26 @@
         <% end %>
       </div>
       <% Date.current.all_week.each do |day| %>
-        <div class="week-grid__day">
+        <turbo-frame class="week-grid__day" id="<%= day.iso8601 %>">
           <% (24.hours/0.5.hour).to_i.times do |half_hours| %>
             <div class="week-grid__slot week-grid__time-slot">
-              <turbo-frame id="<%= day.to_time(:utc).beginning_of_day + (30.minutes * half_hours) %>">
-                <% calendar_event = calendar.calendar_events.find { _1.starts_at == day.to_time(:utc).beginning_of_day + (30.minutes * half_hours) } %>
-                <% if calendar_event %>
-                  <%= render calendar_event %>
-                <% else %>
-                  <%= form_with model: CalendarEvent.new do |f| %>
-                    <%= f.hidden_field :calendar_id, value: calendar.id %>
-                    <%= f.hidden_field :title, value: 'New event' %>
-                    <%= f.hidden_field :starts_at, value: day.to_time(:utc).beginning_of_day + (30.minutes * half_hours) %>
-                    <%= f.hidden_field :ends_at, value: (day.to_time(:utc).beginning_of_day + (30.minutes * half_hours) + 30.minutes) %>
-                    <%= f.button(type: :submit) do %>
-                      <span class="sr-only">Create event</span>
-                    <% end %>
+              <% calendar_event = calendar.calendar_events.find { _1.starts_at == day.to_time(:utc).beginning_of_day + (30.minutes * half_hours) } %>
+              <% if calendar_event %>
+                <%= render calendar_event %>
+              <% else %>
+                <%= form_with model: CalendarEvent.new do |f| %>
+                  <%= f.hidden_field :calendar_id, value: calendar.id %>
+                  <%= f.hidden_field :title, value: 'New event' %>
+                  <%= f.hidden_field :starts_at, value: day.to_time(:utc).beginning_of_day + (30.minutes * half_hours) %>
+                  <%= f.hidden_field :ends_at, value: (day.to_time(:utc).beginning_of_day + (30.minutes * half_hours) + 30.minutes) %>
+                  <%= f.button(type: :submit) do %>
+                    <span class="sr-only">Create event</span>
                   <% end %>
                 <% end %>
-              </turbo-frame>
+              <% end %>
             </div>
           <% end %>
-        </div>
+        </turbo-frame>
       <% end %>
     </div>
   </div>

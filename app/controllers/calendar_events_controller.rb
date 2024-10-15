@@ -25,7 +25,7 @@ class CalendarEventsController < ApplicationController
 
     respond_to do |format|
       if @calendar_event.save
-        format.html { redirect_to @calendar_event }
+        format.html { redirect_to root_path }
       else
         format.html { render :new, status: :unprocessable_entity }
       end
