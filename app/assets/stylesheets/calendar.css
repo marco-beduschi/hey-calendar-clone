@@ -48,7 +48,8 @@
   grid-area: var(--grid-row-start) / 1 / var(--grid-row-end) / 1;
 
   & button,
-  form {
+  a {
+    display: block;
     width: 100%;
     height: 100%;
   }

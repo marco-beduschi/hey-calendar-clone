@@ -12,7 +12,7 @@ class CalendarEventsController < ApplicationController
 
   # GET /calendar_events/new
   def new
-    @calendar_event = CalendarEvent.new
+    @calendar_event = CalendarEvent.new(calendar_event_params)
   end
 
   # GET /calendar_events/1/edit
