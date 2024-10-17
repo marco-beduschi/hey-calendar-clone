@@ -13,6 +13,11 @@ class CalendarEventsController < ApplicationController
   # GET /calendar_events/new
   def new
     @calendar_event = CalendarEvent.new(calendar_event_params)
+
+    respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.update(:new_calendar_event_dialog, template: "calendar_events/new" ) }
+      format.html { render :new }
+    end
   end
 
   # GET /calendar_events/1/edit

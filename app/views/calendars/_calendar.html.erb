@@ -1,3 +1,6 @@
+<dialog id="new_calendar_event_dialog">
+</dialog>
+
 <div class="week-grid">
   <div>
     <div class="week-grid__header">
@@ -25,7 +28,7 @@
         <% end %>
       </div>
       <% Date.current.all_week.each do |day| %>
-        <div class="week-grid__day" id="<%= day.iso8601 %>">
+        <div class="week-grid__day">
           <% @calendar_events.select { _1.starts_at.to_date == day }.each do |event| %>
             <%= render partial: "calendar_events/calendar_event", locals: { calendar_event: event } %>
           <% end %>
@@ -38,7 +41,13 @@
                     ends_at: (day.to_time(:utc).beginning_of_day + (30.minutes * half_hours) + 29.minutes),
                     calendar_id: calendar.id
                   }
-                )
+                ),
+                data: {
+                  turbo_stream: true,
+                  controller: "dialog",
+                  action: "dialog#open",
+                  dialog_dialog_id_value: "new_calendar_event_dialog"
+                }
               ) do %>
                   <span class="sr-only">Create event</span>
               <% end %>
